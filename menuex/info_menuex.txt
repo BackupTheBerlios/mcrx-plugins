@@ -1,0 +1,70 @@
+-------------------
+MenuItemEx Plugin
+------------------------
+
+With this plugin you can set various per-user settings by menu
+
+
+
+micron-x
+
+Questions and comments to:
+micron@nexgo.de
+
+
+
+
+Langpack strings
+----------------------
+[Always visible]
+
+[Never visible]
+
+[Hide from list]
+
+[Shown menu items]
+
+[Ignore...]
+
+
+
+
+
+
+Version history
+-------------------
+
+1.2.0.0:		- Option to send 'You were added' and auth requests
+
+1.1.0.0:		- Option to change group (limited to 31 groups)
+
+1.0.0.0:		- Possibility to change a contacts protocol
+
+0.4.0.0:		- Plugin renamed
+			- added option to change Ignore settings
+
+0.3.0.0:		- New menu item
+			- Options page
+			- Reduced filesize to ~6.5k
+
+0.2.0.0:		- Translatable
+			- Added second version which replaces the built-in visibility module
+
+0.1.0.0:		- Initial version, not released
+
+
+
+Rebase information
+-------------------
+menuex.dll		0x67100000
+
+enotify.dll		0x67700000
+dbviewer.dll		0x67600000
+hotkey.dll		0x67500000
+pluginsweeper.dll	0x67400000
+seenplugin.dll		0x67300000
+tipinfo.dll		0x67200000
+
+
+
+Licence: GPL (see gpl.txt in the miranda directory)

@@ -1,0 +1,144 @@
+Tooltip info plugin
+*******************
+This plugin shows various user/group infos in a tooltip.
+
+It requires a Miranda 0.3alpha build after 16th February 2003
+
+micron-x
+
+Questions and comments to:
+micron@nexgo.de
+
+
+
+Variables
+*********
+
+%lname:		list name, your custom handle for a contact
+%first:		first name
+%last:		last name
+%city:		city
+%age:		age
+%gender:	gender
+%country:	country
+%mail:		e-mail adress
+%iname:		contacts protocol-nickname
+%lang1:		first spoken language
+%lang2:		second spoken language
+%lang3:		third spoken language
+%ver:		protocol version
+%mver:		miranda version
+%id:		ICQ: uin, MSN: e-mail, YAHOO: id, ...
+%ip:		external IP
+%realip:	internal IP
+%bday:		day of birth (format: dd)
+%bmonth:	month of birth (format as in userinfo dialog)
+%byear:		year of birth (format: yyyy)
+%status:	contact status
+%smsg:		status message of a contact
+%tab:		inserts a tab
+%phone:		phone #
+%cell:		# of cell phone
+%notes:		notes (from userinfo dialog)
+
+
+
+Langpack strings
+****************
+[Retrieving mode message...]
+
+[No ICQ user]
+
+[Tool Tip]
+
+[Tooltip info]
+
+[Show tooltip even if list is not focused]
+
+[Show tooltip over contacts]
+
+[Show tooltip over groups]
+
+[ms tooltip delay]
+
+[For a complete list of variables see tipinfo_info.txt]
+
+[Remove line break in front of %smsg if not needed]
+
+[No information available]
+
+
+
+Version history
+***************
+
+2.1.0.0:	- problems with non-existent settings fixed
+
+2.0.0.0:	- supports now all protocols
+			- crashing with SimICQ contacts hopefully fixed
+
+1.5.3.0:	- %uin was replaced by %id and supports now MSN and yahoo (by bidyut)
+
+1.5.2.0:	- fixed %notes not being listed on options page
+		- prevent plugin not loading & new base address
+
+1.5.1.0:	- new variable: %notes
+
+1.5.0.0:	- variables with unknown value aren't displayed anymore
+		- fixed bug with %<no variable>
+
+1.4.0.0:	- misplacement fix
+		- another improvement of the line-break remover
+
+1.3.0.0:	- redone options-page design
+		- two more variables
+		- template-input-field now multi-line (%break obsolete & removed)
+		- smarter line break remover
+		- bugfixes
+
+1.2.0.0:	- fixed 'strange chars' bug
+		- added option to remove the %break in front of %smsg
+		  if the contact has no mode message
+
+1.1.0.0:	- small bugfix
+
+1.0.0.0:	- Added lots of useable variables
+		- Added options page
+		- Some new langpack strings
+
+0.0.6.0:	- Preview release
+		- Fixed Unknown contact bug
+
+0.0.5.0:	- Preview release
+		- fixed bug crashing miranda on exit
+
+0.0.4.0:	- Preview release
+		- added a timer to replace "Retrieving..." and "Could not..." tooltips
+
+0.0.3.0:	- Preview release
+		- own UIN and e-mail bug on mode message
+		  tip fixed
+		- tooltip layout improved a little
+
+0.0.2.0:	- Preview release
+		- position bug fixed (will be removed if Miranda 0.1.2.2 is released)
+		- Shows now UIN and e-mail in addition to the mode message
+
+0.0.1.0:	- Preview release
+
+
+
+Rebase information
+******************
+tipinfo.dll		0x67200000
+
+enotify.dll		0x67700000
+dbviewer.dll		0x67600000
+hotkey.dll		0x67500000
+pluginsweeper.dll	0x67400000
+seenplugin.dll		0x67300000
+visibility.dll		0x67100000
+
+
+
+Licence: GPL (see gpl.txt in the miranda directory)
