@@ -1,20 +1,70 @@
 #include "seen.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
-#include "..\..\miranda32\protocols\protocols\m_protocols.h"
-#include "..\..\miranda32\protocols\protocols\m_protosvc.h"
 
 
 
 void FileWrite(HANDLE);
+void HistoryWrite(HANDLE hcontact);
 void SetOffline(void);
+void ShowHistory(HANDLE hContact, BYTE isAlert);
 
 
+//copied from ..\..\miranda32\protocols\protocols\protocols.c
+PROTOCOLDESCRIPTOR* Proto_IsProtocolLoaded(const char* szProto)
+{
+	return (PROTOCOLDESCRIPTOR*) CallService(MS_PROTO_ISPROTOCOLLOADED, 0, (LPARAM)szProto);;
+}
+
+
+/*
+Returns true if the protocols is to be monitored
+*/
+int IsWatchedProtocol(const char* szProto)
+{
+	DBVARIANT dbv;
+	char *szProtoPointer, *szWatched;
+	int iProtoLen, iWatchedLen;
+	int retval = 0;
+	PROTOCOLDESCRIPTOR *pd;
+
+	if (szProto == NULL)
+		return 0;
+	
+	pd=Proto_IsProtocolLoaded(szProto);
+	if (pd==NULL || pd->type!=PROTOTYPE_PROTOCOL || CallProtoService(pd->szName,PS_GETCAPS,PFLAGNUM_2,0)==0)
+		return 0;
+
+	iProtoLen = strlen(szProto);
+	if(DBGetContactSetting(NULL, S_MOD, "WatchedProtocols", &dbv))
+		szWatched = DEFAULT_WATCHEDPROTOCOLS;
+	else
+		szWatched = dbv.pszVal;
+	iWatchedLen = strlen(szWatched);
+
+	if (*szWatched == '\0') 
+	{
+		retval=1; //empty string: all protocols are watched
+	} 
+	else 
+	{
+		szProtoPointer = strstr(szWatched, szProto);
+		if (szProtoPointer == NULL)
+			retval=0;
+		else if ((szProtoPointer == szWatched || *(szProtoPointer-1) == ' ')
+			&& (szProtoPointer+iProtoLen == szWatched+iWatchedLen || *(szProtoPointer+iProtoLen) == ' '))
+			retval=1;
+		else
+			retval=0;
+	}
+
+	DBFreeVariant(&dbv);
+	return retval;
+}
 
 char *ParseString(char *szstring,HANDLE hcontact,BYTE isfile)
 {
-	char sztemp[1024]="",szdbsetting[128]="";
+	static char sztemp[1024];
+	char szdbsetting[128]="";
 	UINT loop=0;
-	DBVARIANT dbv;
 	int isetting=0;
 	DWORD dwsetting=0;
 	struct in_addr ia;
@@ -22,6 +72,12 @@ char *ParseString(char *szstring,HANDLE hcontact,BYTE isfile)
 	char *wdays_short[]={"Sun.","Mon.","Tue.","Wed.","Thu.","Fri.","Sat."};
 	char *monthnames[]={"January","February","March","April","May","June","July","August","September","October","November","December"};
 	char *mnames_short[]={"Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."};
+	CONTACTINFO ci;
+
+	ci.cbSize=sizeof(CONTACTINFO);
+	ci.hContact=hcontact;
+	ci.szProto=(char *)CallService(MS_PROTO_GETCONTACTBASEPROTO,(WPARAM)hcontact,0);
+	*sztemp = '\0';
 	
 	for(;loop<strlen(szstring);loop++)
 	{
@@ -132,36 +188,48 @@ char *ParseString(char *szstring,HANDLE hcontact,BYTE isfile)
 					break;
 
 				case 'u':
-/*					dwsetting=DBGetContactSettingDword(hcontact,"ICQ","UIN",0);
-					if(!dwsetting)
+					ci.dwFlag=CNF_UNIQUEID;
+					if(!CallService(MS_CONTACT_GETCONTACTINFO,(WPARAM)0,(LPARAM)&ci))
 					{
-						DBGetContactSetting(hcontact,"MSN","e-mail",&dbv);
-						strcat(sztemp,dbv.pszVal);
-					}
+						switch(ci.type)
+						{
+							case CNFT_BYTE:
+								ltoa(ci.bVal,szdbsetting,10);
+								break;
+							case CNFT_WORD:
+								ltoa(ci.wVal,szdbsetting,10);
+								break;
+							case CNFT_DWORD:
+								ltoa(ci.dVal,szdbsetting,10);
+								break;
+							case CNFT_ASCIIZ:
+								strcpy(szdbsetting,ci.pszVal);
+								break;
+						}
 
+					}
+					else if (ci.szProto != NULL) 
+					{
+						if (!strcmp(ci.szProto,"YAHOO")) // hard-wired YAHOO support
+						{
+							DBVARIANT dbv;
+							DBGetContactSetting(hcontact,"YAHOO","id",&dbv);
+							strcpy(szdbsetting,dbv.pszVal);
+							DBFreeVariant(&dbv);
+						}
+						else if (!strcmp(ci.szProto,"yahoo")) // hard-wired YAHOO support (2)
+						{
+							DBVARIANT dbv;
+							DBGetContactSetting(hcontact,"yahoo","id",&dbv);
+							strcpy(szdbsetting,dbv.pszVal);
+							DBFreeVariant(&dbv);
+						}
+					}
 					else
 					{
-						wsprintf(szdbsetting,"%i",dwsetting);
-						strcat(sztemp,szdbsetting);
-					}*/
-
-					// YAHOO: e-mail
-/*					szproto=strdup(CallService(MS_PROTO_GETCONTACTBASEPROTO,(WPARAM)hcontact,0));
-					
-					if((dwsetting=DBGetContactSettingDword(hcontact,"ICQ","UIN",0))
-						wsprintf(szdbsetting,"%i",dwsetting);
-
-					else if((dwsetting=DBGetContactSettingDword(hcontact,"EM_LAN_PROTO","ipaddr",0)))
-						wsprintf(szdbsetting,"%i",dwsetting);
-					
-					else if((dwsetting=DBGetContactSettingDword(hcontact,"EM_LAN_PROTO","ipaddr",0)))
-						wsprintf(szdbsetting,"%i",dwsetting);
-
-					else if((dwsetting=DBGetContactSettingDword(hcontact,"GG","UIN",0)))
-						wsprintf(szdbsetting,"%i",dwsetting);
-*/
-					PFLAG_UNIQUEIDTEXT
-
+						strcpy(szdbsetting,Translate("<unknown>"));
+					}
+					strcat(sztemp,szdbsetting);
 					break;
 
 				case 's':
@@ -196,8 +264,8 @@ char *ParseString(char *szstring,HANDLE hcontact,BYTE isfile)
 			}
 		}
 	}
-	DBFreeVariant(&dbv);
-	return &sztemp[0];
+
+	return sztemp;
 }
 
 
@@ -220,40 +288,63 @@ int UpdateValues(WPARAM wparam,LPARAM lparam)
 {
 	DBCONTACTWRITESETTING *cws;
 	SYSTEMTIME time;
-
+	HANDLE hContact;
+	int prevStatus;
+	
+	hContact = (HANDLE)wparam;
 	cws=(DBCONTACTWRITESETTING *)lparam;
+	if(hContact==NULL || strcmp(cws->szSetting,"Status") || !IsWatchedProtocol(cws->szModule)) 
+		return 0;
 
-	if(strcmp(cws->szSetting,"Status") || (strcmp(cws->szModule,"ICQ") && strcmpi(cws->szModule,"MSN") && strcmpi(cws->szModule,"YAHOO") && strcmp(cws->szModule,"Tlen") && strcmp(cws->szModule,"GG") && strcmp(cws->szModule,"Jabber") && strcmp(cws->szModule,"EM_LAN_PROTO")) || (HANDLE)wparam==NULL) return 0;
-
+	prevStatus=DBGetContactSettingWord(hContact,S_MOD,"Status",ID_STATUS_OFFLINE);
+	
 	if(cws->value.wVal==ID_STATUS_OFFLINE)
 	{
-		DBWriteContactSettingByte((HANDLE)wparam,S_MOD,"Offline",1);
+		// avoid repeating the offline status
+		if (prevStatus==ID_STATUS_OFFLINE) 
+			return 0;
+
+		DBWriteContactSettingByte(hContact,S_MOD,"Offline",1);
 		GetLocalTime(&time);
-		DBWriteTime(&time,(HANDLE)wparam);
+		DBWriteTime(&time,hContact);
+
 		if(!DBGetContactSettingByte(NULL,S_MOD,"IgnoreOffline",1))
 		{
-			DBWriteContactSettingWord((HANDLE)wparam,S_MOD,"Status",ID_STATUS_OFFLINE);
+			DBWriteContactSettingWord(hContact,S_MOD,"Status",ID_STATUS_OFFLINE);
 
 			if(DBGetContactSettingByte(NULL,S_MOD,"FileOutput",0))
-				FileWrite((HANDLE)wparam);
+				FileWrite(hContact);
+
+			if(DBGetContactSettingByte(NULL,S_MOD,"KeepHistory",0))
+				HistoryWrite(hContact);
+
+			if(DBGetContactSettingByte(hContact,S_MOD,"OnlineAlert",0)) 
+				ShowHistory(hContact, 1);
 		}
-		return 0;
+
+	} else {
+
+		if(cws->value.wVal==prevStatus && !DBGetContactSettingByte(hContact,S_MOD,"Offline",0)) 
+			return 0;
+
+		GetLocalTime(&time);
+		DBWriteTime(&time,hContact);
+
+		DBWriteContactSettingWord(hContact,S_MOD,"Status",(WORD)cws->value.wVal);
+
+		if(DBGetContactSettingByte(NULL,S_MOD,"FileOutput",0))
+			FileWrite(hContact);
+
+		if(DBGetContactSettingByte(NULL,S_MOD,"KeepHistory",0))
+			HistoryWrite(hContact);
+
+		if(DBGetContactSettingByte(hContact,S_MOD,"OnlineAlert",0)) 
+			ShowHistory(hContact, 1);
+
+	//	CallContactService(hContact,PSS_GETINFO,0,0);
+
+		DBWriteContactSettingByte(hContact,S_MOD,"Offline",0);
 	}
-	if(cws->value.wVal==DBGetContactSettingWord((HANDLE)wparam,S_MOD,"Status",ID_STATUS_OFFLINE) && !DBGetContactSettingByte((HANDLE)wparam,S_MOD,"Offline",0)) return 0;
-
-	GetLocalTime(&time);
-
-	DBWriteTime(&time,(HANDLE)wparam);
-
-	DBWriteContactSettingWord((HANDLE)wparam,S_MOD,"Status",(WORD)cws->value.wVal);
-
-	if(DBGetContactSettingByte(NULL,S_MOD,"FileOutput",0))
-		FileWrite((HANDLE)wparam);
-
-//	CallContactService((HANDLE)wparam,PSS_GETINFO,0,0);
-
-	DBWriteContactSettingByte((HANDLE)wparam,S_MOD,"Offline",0);
-
 	return 0;
 }
 
@@ -276,6 +367,7 @@ int ModeChange(WPARAM wparam,LPARAM lparam)
 	isetting=CallProtoService(ack->szModule,PS_GETSTATUS,0,0);
 	DBWriteContactSettingWord(NULL,S_MOD,"Status",(WORD)isetting);
 
+	// log "myself"
 	if(DBGetContactSettingByte(NULL,S_MOD,"FileOutput",0))
 		FileWrite(NULL);
 
@@ -321,3 +413,6 @@ void SetOffline(void)
 		hcontact=(HANDLE)CallService(MS_DB_CONTACT_FINDNEXT,(WPARAM)hcontact,0);
 	}
 }
+
+
+

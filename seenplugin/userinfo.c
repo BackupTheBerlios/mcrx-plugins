@@ -1,5 +1,4 @@
 #include "seen.h"
-#include "..\..\miranda32\ui\userinfo\m_userinfo.h"
 
 
 
@@ -9,7 +8,6 @@ WNDPROC MainProc;
 
 extern HINSTANCE hinstance;
 extern DWORD dwmirver;
-char *ParseString(char *,HANDLE);
 
 
 
@@ -37,7 +35,7 @@ BOOL CALLBACK UserinfoDlgProc(HWND hdlg,UINT msg,WPARAM wparam,LPARAM lparam)
 
 		case WM_INITDIALOG:
 			MainProc=(WNDPROC)SetWindowLong(GetDlgItem(hdlg,IDC_INFOTEXT),GWL_WNDPROC,(LONG)EditProc);
-			szout=strdup(ParseString((!DBGetContactSetting(NULL,S_MOD,"UserStamp",&dbv)?dbv.pszVal:"Date: %d.%m.%Y%b%bTime: %H:%M:%S%b%bStatus: %s"),(HANDLE)lparam));
+			szout=strdup(ParseString((!DBGetContactSetting(NULL,S_MOD,"UserStamp",&dbv)?dbv.pszVal:DEFAULT_USERSTAMP),(HANDLE)lparam,0));
 			SetDlgItemText(hdlg,IDC_INFOTEXT,szout);
 			if(!strcmp(szout,Translate("<unknown>")))
 				EnableWindow(GetDlgItem(hdlg,IDC_INFOTEXT),FALSE);

@@ -2,17 +2,20 @@
 
 
 
-char *ParseString(char *,HANDLE,BYTE);
 
 
-
+/*
+Prepares the log file:
+- calculates the absolute path (and store it in the db)
+- creates the directory
+*/
 int InitFileOutput(void)
 {
 	char szfpath[256]="",szmpath[256]="",*str;
 	DBVARIANT dbv;
 
 	GetModuleFileName(NULL,szmpath,MAX_PATH);
-	strcpy(szfpath,!DBGetContactSetting(NULL,S_MOD,"FileName",&dbv)?dbv.pszVal:"logs\\seen.txt");
+	strcpy(szfpath,!DBGetContactSetting(NULL,S_MOD,"FileName",&dbv)?dbv.pszVal:DEFAULT_FILENAME);
 
 	DBFreeVariant(&dbv);
 
@@ -47,7 +50,9 @@ int InitFileOutput(void)
 }
 
 
-
+/*
+Writes a line into the log.
+*/
 void FileWrite(HANDLE hcontact)
 {
 	HANDLE fhout;
@@ -56,16 +61,17 @@ void FileWrite(HANDLE hcontact)
 	DBVARIANT dbv;
 
 	DBGetContactSetting(NULL,S_MOD,"PathToFile",&dbv);
-
 	fhout=CreateFile(dbv.pszVal,GENERIC_WRITE,0,NULL,OPEN_ALWAYS,0,NULL);
+	DBFreeVariant(&dbv);
 	SetFilePointer(fhout,0,0,FILE_END);
 
-	strcpy(szout,ParseString(!DBGetContactSetting(NULL,S_MOD,"FileStamp",&dbv)?dbv.pszVal:"%d.%m.%Y @ %H:%M:%S   %n[%u | %i] new status: %s",hcontact,1));
+	strcpy(szout,ParseString(!DBGetContactSetting(NULL,S_MOD,"FileStamp",&dbv)?dbv.pszVal:DEFAULT_FILESTAMP,hcontact,1));
+	DBFreeVariant(&dbv);
 	
 	WriteFile(fhout,szout,strlen(szout),&byteswritten,NULL);
 	WriteFile(fhout,sznl,strlen(sznl),&byteswritten,NULL);
 
 	CloseHandle(fhout);
 
-	DBFreeVariant(&dbv);
+	
 }

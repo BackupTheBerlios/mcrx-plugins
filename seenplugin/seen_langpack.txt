@@ -152,3 +152,17 @@
 ;New 4.1.1
 ;--------------------
 [Count times]
+
+;New 5.0.0.0
+;--------------------
+[last seen history]
+
+[Log to history]
+
+[Maximum size]
+
+[Variable list]
+
+[Protocols to watch:]
+
+[Alert when user status changes]

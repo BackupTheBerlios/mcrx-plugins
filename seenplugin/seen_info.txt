@@ -20,6 +20,19 @@ see seen_langpack.txt
 
 Version history
 ***************
+5.0.1.0:
+		- FIX: Some protocols add an offline entry for every contact when the user logoff the network
+		- FIX: An extra character (0 or 1) was added to each line of the file log.
+		- UPDATE: seen_langpack.txt now contains the strings added on version 5.0.0.0
+5.0.0.1:
+		- FIX: Removed some code that flooded the network with requests (see http://miranda-icq.sourceforge.net/forums/viewtopic.php?t=11579)
+		- CHANGE: History now defaults to a "pretier" format.
+5.0.0.0:	
+		- FIX: Last statusmode icon displayed according to the contact's protocol
+		- NEW: Support for all protocols (user selectable)
+		- NEW: Added dialog showing the recent "seen history" of an user
+		- NEW: Added option to display an alert when a specified user changes its status
+
 4.1.6.2:	- prevent plugin not loading & new base address
 
 4.1.6.1:	- Silly bug with 4.1.6.0 fixed

@@ -1,9 +1,4 @@
 #include "seen.h"
-#include "..\..\miranda32\ui\options\m_options.h"
-#include "..\..\miranda32\ui\userinfo\m_userinfo.h"
-#include "..\..\miranda32\core\m_system.h"
-#include "..\..\miranda32\protocols\protocols\m_protocols.h"
-
 
 
 HINSTANCE hinstance;
@@ -12,12 +7,12 @@ PLUGINLINK *pluginLink;
 PLUGININFO pluginInfo={
 		sizeof(PLUGININFO),
 		"Last seen plugin",
-		PLUGIN_MAKE_VERSION(4,1,7,0),
+		PLUGIN_MAKE_VERSION(5,0,1,0),
 		"Log when a user was last seen online and which users were online while you were away",
 		"Heiko Schillinger",
 		"micron@nexgo.de",
-		"© 2001-2002 Heiko Schillinger",
-		"http://nortiq.com/miranda",
+		"© 2001-2002 Heiko Schillinger, 2003 modified by Bruno Rino",
+		"http://miranda-im.org/download/details.php?action=viewfile&id=202",
 		0,
 		0
 };
@@ -26,7 +21,7 @@ PLUGININFO pluginInfo={
 
 int OptionsInit(WPARAM,LPARAM);
 int UserinfoInit(WPARAM,LPARAM);
-void InitFileOutput(void);
+int InitFileOutput(void);
 void InitMenuitem(void);
 int UpdateValues(WPARAM,LPARAM);
 int ModeChange(WPARAM,LPARAM);
@@ -41,14 +36,15 @@ int MainInit(WPARAM wparam,LPARAM lparam)
 {
 	HookEvent(ME_OPT_INITIALISE,OptionsInit);
 	
+	if(DBGetContactSettingByte(NULL,S_MOD,"MenuItem",1)) {
+		InitMenuitem();
+	}
+	
 	if(DBGetContactSettingByte(NULL,S_MOD,"UserinfoTab",1))
 		ehuserinfo=HookEvent(ME_USERINFO_INITIALISE,UserinfoInit);
 
 	if(DBGetContactSettingByte(NULL,S_MOD,"FileOutput",0))
 		InitFileOutput();
-
-	if(DBGetContactSettingByte(NULL,S_MOD,"MenuItem",1))
-		InitMenuitem();
 
 	if(DBGetContactSettingByte(NULL,S_MOD,"MissedOnes",0))
 		ehmissed_proto=HookEvent(ME_PROTO_ACK,ModeChange_mo);
@@ -59,6 +55,7 @@ int MainInit(WPARAM wparam,LPARAM lparam)
 	ehproto[0]=HookEvent(ME_PROTO_ACK,ModeChange);
 	ehproto[1]=HookEvent(ME_PROTO_ACK,GetInfoAck);
 
+	SkinAddNewSound("LastSeenTrackedStatusChange",Translate("LastSeen: User status change"),"global.wav");
 	DBWriteContactSettingString(NULL,"Uninstall",Translate("Last seen"),S_MOD);
 	return 0;
 }

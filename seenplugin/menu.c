@@ -1,19 +1,18 @@
 #include "seen.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
-#include "..\..\miranda32\random\skin\m_skin.h"
-
-
 
 HANDLE hmenuitem=NULL;
 
 
 
-char *ParseString(char *,HANDLE,BYTE);
+void ShowHistory(HANDLE hContact, BYTE isAlert);
+void InitHistoryDialog(void);
 
-
-
+/*
+Handles the messages sent by clicking the contact's menu item
+*/
 int MenuitemClicked(WPARAM wparam,LPARAM lparam)
 {
+	ShowHistory((HANDLE)wparam, 0);
 	return 0;
 }
 
@@ -24,55 +23,43 @@ int BuildContactMenu(WPARAM wparam,LPARAM lparam)
 	CLISTMENUITEM cmi;
 	DBVARIANT dbv;
 	int id=-1,isetting;
+	HANDLE hContact;
+	char *szProto;
+
+	hContact = (HANDLE)wparam;
+	szProto=(char*)CallService(MS_PROTO_GETCONTACTBASEPROTO,(WPARAM)hContact,0);
+
 
 	ZeroMemory(&cmi,sizeof(cmi));
 	cmi.cbSize=sizeof(cmi);
-
-	if(!DBGetContactSettingByte(NULL,S_MOD,"MenuItem",1))
+	if(!IsWatchedProtocol(szProto) || !DBGetContactSettingByte(NULL,S_MOD,"MenuItem",1))
+	{
 		cmi.flags=CMIM_FLAGS|CMIF_HIDDEN;
-	
+	}
 	else
 	{
 		cmi.flags=CMIM_NAME|CMIM_FLAGS|CMIM_ICON;
 		cmi.hIcon=NULL;
-		cmi.pszName=ParseString(!DBGetContactSetting(NULL,S_MOD,"MenuStamp",&dbv)?dbv.pszVal:"%d.%m.%Y - %H:%M [%s]",(HANDLE)wparam,0);
+		cmi.pszName=ParseString(!DBGetContactSetting(NULL,S_MOD,"MenuStamp",&dbv)?dbv.pszVal:DEFAULT_MENUSTAMP,(HANDLE)wparam,0);
+		DBFreeVariant(&dbv);
 		
 		if(!strcmp(cmi.pszName,Translate("<unknown>")))
-			cmi.flags|=CMIF_GRAYED;
-
-		if(DBGetContactSettingByte(NULL,S_MOD,"ShowIcon",1))
+		{	
+			if (IsWatchedProtocol(szProto))
+				cmi.flags|=CMIF_GRAYED;
+			else
+				cmi.flags|=CMIF_HIDDEN;	
+		} 
+		else if(DBGetContactSettingByte(NULL,S_MOD,"ShowIcon",1))
 		{
-			isetting=DBGetContactSettingWord((HANDLE)wparam,S_MOD,"Status",-1);
+			isetting=DBGetContactSettingWord((HANDLE)hContact,S_MOD,"Status",-1);
+			cmi.hIcon=LoadSkinnedProtoIcon(szProto,isetting);
 			
-			switch(isetting){
-			
-				default:
-					id=isetting-ID_STATUS_OFFLINE;
-					break;
-
-				case ID_STATUS_DND:
-					id=SKINICON_STATUS_DND;
-					break;
-
-				case ID_STATUS_NA:
-					id=SKINICON_STATUS_NA;
-					break;
-
-				case ID_STATUS_OCCUPIED:
-					id=SKINICON_STATUS_OCCUPIED;
-					break;
-
-				case -1:
-					break;
-			}
-
-			cmi.hIcon=LoadSkinnedIcon(id);
 		}
 	}
-	
+
 	CallService(MS_CLIST_MODIFYMENUITEM,(WPARAM)hmenuitem,(LPARAM)&cmi);
 
-	DBFreeVariant(&dbv);
 
 	return 0;
 }
@@ -83,7 +70,7 @@ void InitMenuitem(void)
 {
 	CLISTMENUITEM cmi;
 
-	CreateServiceFunction("Foo",MenuitemClicked);
+	CreateServiceFunction("LastSeenUserDetails",MenuitemClicked);
 
 	ZeroMemory(&cmi,sizeof(cmi));
 	cmi.cbSize=sizeof(cmi);
@@ -92,10 +79,12 @@ void InitMenuitem(void)
 	cmi.hotKey=0;
 	cmi.position=-0x7FFFFFFF;
 	cmi.pszContactOwner=NULL;
-	cmi.pszName="Test";
-	cmi.pszService="Foo";
+	cmi.pszName="<none>";
+	cmi.pszService="LastSeenUserDetails";
 	
 	hmenuitem=(HANDLE)CallService(MS_CLIST_ADDCONTACTMENUITEM,0,(LPARAM)&cmi);
 	
 	HookEvent(ME_CLIST_PREBUILDCONTACTMENU,BuildContactMenu);
+
+	InitHistoryDialog();
 }

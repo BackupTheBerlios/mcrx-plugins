@@ -1,8 +1,6 @@
 #include "seen.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
-#include "..\..\miranda32\protocols\protocols\m_protocols.h"
-#include "..\..\miranda32\protocols\protocols\m_protosvc.h"
-#include "..\..\miranda32\random\ignore\m_ignore.h"
+
+#include "..\SDK\headers_c\m_ignore.h"
 
 
 
