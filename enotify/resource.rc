@@ -237,8 +237,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,1,5,5
- PRODUCTVERSION 0,1,5,5
+ FILEVERSION 0,1,6,0
+ PRODUCTVERSION 0,1,6,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -256,14 +256,14 @@ BEGIN
             VALUE "Comments", "Event Notify plugin for Miranda IM\0"
             VALUE "CompanyName", "Heiko Schillinger\0"
             VALUE "FileDescription", "Event Notify\0"
-            VALUE "FileVersion", "0.1.5.5\0"
+            VALUE "FileVersion", "0.1.6.0\0"
             VALUE "InternalName", "Event Notify\0"
-            VALUE "LegalCopyright", "© 2002 Heiko Schillinger\0"
+            VALUE "LegalCopyright", "© 2002-2004 Heiko Schillinger\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "enotify.dll\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "Event Notify\0"
-            VALUE "ProductVersion", "0.1.5.5\0"
+            VALUE "ProductVersion", "0.1.6.0\0"
             VALUE "SpecialBuild", "\0"
         END
     END

@@ -1,12 +1,12 @@
 #include <windows.h>
 #include <commctrl.h>
 #include "resource.h"
-#include "..\SDK\headers_c\newpluginapi.h"
-#include "..\SDK\headers_c\m_database.h"
-#include "..\SDK\headers_c\m_clist.h"
-#include "..\SDK\headers_c\m_clui.h"
-#include "..\SDK\headers_c\m_langpack.h"
-#include "..\SDK\headers_c\m_skin.h"
+#include "..\miranda\include\newpluginapi.h"
+#include "..\miranda\include\m_database.h"
+#include "..\miranda\include\m_clist.h"
+#include "..\miranda\include\m_clui.h"
+#include "..\miranda\include\m_langpack.h"
+#include "..\miranda\include\m_skin.h"
 
 
 

@@ -23,7 +23,7 @@ might have seen). Thanks a lot!
 micron-x
 
 Questions and comments to:
-micron@nexgo.de
+micron (at) nexgo.de
 
 
 
@@ -115,6 +115,8 @@ Langpack strings
 
 Version history
 ***************
+0.1.6.0:	- works now with TabSrmm, too.
+
 0.1.5.5:	- new base address
 
 0.1.5.4:	- plugin not loading finally fixed

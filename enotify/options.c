@@ -1,6 +1,6 @@
 #include "msgpopup.h"
-#include "..\SDK\headers_c\m_options.h"
-#include "..\SDK\headers_c\m_utils.h"
+#include "..\miranda\include\m_options.h"
+#include "..\miranda\include\m_utils.h"
 
 
 // main.c

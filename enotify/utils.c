@@ -1,6 +1,6 @@
 #include "msgpopup.h"
 #include <stdio.h>
-#include "..\SDK\headers_c\m_protosvc.h"
+#include "..\miranda\include\m_protosvc.h"
 
 
 // windows.c
@@ -12,6 +12,7 @@ int WindowRequest(HANDLE,UINT,int,HANDLE);
 //	0 - No window found
 //	1 - Split-mode window found
 //	2 - Single-mode window found
+//  3 - TabSrmm window found
 int CheckMsgWnd(WPARAM contact)
 {
 	char newtitle[256];
@@ -30,6 +31,9 @@ int CheckMsgWnd(WPARAM contact)
 
 	if(FindWindow("#32770",newtitle))
 		return 2;
+
+	if(CallService("SRMsg_MOD/MessageDialogOpened",contact,0))
+		return 3;
 
 	return 0;
 }

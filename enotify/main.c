@@ -1,7 +1,7 @@
 #include "msgpopup.h"
-#include "..\SDK\headers_c\m_system.h"
-#include "..\SDK\headers_c\m_options.h"
-#include "..\SDK\headers_c\m_utils.h"
+#include "..\miranda\include\m_system.h"
+#include "..\miranda\include\m_options.h"
+#include "..\miranda\include\m_utils.h"
 
 
 
@@ -14,12 +14,12 @@ PLUGINLINK *pluginLink;
 PLUGININFO pluginInfo={
 		sizeof(PLUGININFO),
 		"Message popup",
-		PLUGIN_MAKE_VERSION(0,1,5,4),
+		PLUGIN_MAKE_VERSION(0,1,6,0),
 		"Pops up a window on various events",
 		"Heiko Schillinger",
 		"micron@nexgo.de",
 		"© 2002 Heiko Schillinger",
-		"http://nortiq.com/miranda",
+		"http://miranda-im.org/download",
 		0,
 		0
 };
