@@ -1,10 +1,10 @@
 #include "menuex.h"
-#include "..\..\miranda32\core\m_system.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
-#include "..\..\miranda32\protocols\protocols\m_protosvc.h"
-#include "..\..\miranda32\protocols\protocols\m_protomod.h"
-#include "..\..\miranda32\ui\clui\m_clui.h"
-#include "..\..\miranda32\random\ignore\m_ignore.h"
+#include "..\SDK\headers_c\m_system.h"
+#include "..\SDK\headers_c\m_clist.h"
+#include "..\SDK\headers_c\m_protosvc.h"
+#include "..\SDK\headers_c\m_protomod.h"
+#include "..\SDK\headers_c\m_clui.h"
+#include "..\SDK\headers_c\m_ignore.h"
 
 
 
