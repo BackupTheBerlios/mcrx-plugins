@@ -1,0 +1,127 @@
+Hotkey plugin
+*************
+On pressing an user defined hotkey an dialog pops up where you can
+enter a contacts name or select it from a combobox and send it
+messages/files/urls an look at his details.
+
+Available hotkeys
+*****************
+	Ctrl-F:		Send file
+	Ctrl-U:		Send URL
+	Ctrl-I:		Show userinfo
+	Ctrl-H:		Open history
+	user-defined:	Open hotkey dialog (see options page)
+
+micron-x
+
+Questions and comments to:
+micron@nexgo.de
+
+
+
+Langpack strings
+****************
+[Enter username:]
+
+[Enter hotkey:]
+
+[Misc:]
+
+[Enable last-sent-to]
+
+[Send message]
+
+[Send file]
+
+[Send URL]
+
+[Open userinfo]
+
+[Open history]
+
+[recognize all messages sent]
+
+[recognize messages sent with hotkey only]
+
+
+
+Version history
+***************
+3.2.1.0:	- prevent plugin not loading & new base address
+
+3.2.0.0:	- Last-sent-to bugfix
+
+3.1.0.0:	- Improved name-detection in editbox
+		- Possibility to set Last-Sent-To checking to hotkey plugin only
+		- Reduced memory usage
+		- Window position is saved
+
+3.0.9.0:	- Unknown contacts bug finally fixed
+
+3.0.8.0:	- icons now always right size
+
+3.0.7.0:	- added tooltips to icons
+		- reduced filesize (~15k)
+
+3.0.6.0:	- added support for plugin sweeper
+
+3.0.5.0:	- bugfixes
+
+3.0.4.0:	- The four new hotkeys are now only available in Hotkey window
+
+3.0.3.0:	- New hotkeys:	CTRL-F Send File
+				CTRL-U Send URL
+				CTRL-I Open Userinfo
+				CTRL-H Open History
+		- Close button for window
+		- Better hotkey processing and show/hide window code
+
+3.0.2.0:	- Had to recompile because of code change in Miranda
+
+3.0.1.0:	- everything translatable
+		- fixed a bug occuring with latest nightlies
+
+3.0.0.0:	- smaller window
+		- icons instead of buttons
+		- small bugfixes
+		- added possibility to open history for a contact
+
+2.2.0.0:	- you can send messages, files and urls with it an
+		  open the user-details dialog
+		- removed mainmenu-item and added options page
+		- fixed bug not saving user defined hotkey
+		- added status-icons to listbox
+
+2.1.0.0:	- works now with convers
+		- user defined hotkey (see main menu)
+
+2.0.0.0:	- works now properly
+
+1.0.0.1:	- silly bug fixed
+
+1.0.0.0:	- New version number :)
+		- "fast-typing" bug fixed
+
+0.0.0.5:	- contact's protocol shown in listbox (if both ICQ and MSN are enabled)
+		- bugfixes
+
+0.0.0.2:	- bugfixes
+
+0.0.0.1:	- Initial release
+
+
+
+Rebase information
+******************
+hotkey.dll		0x67500000
+
+enotify.dll		0x67700000
+dbviewer.dll		0x67600000
+pluginsweeper.dll	0x67400000
+seenplugin.dll		0x67300000
+tipinfo.dll		0x67200000
+visibility.dll		0x67100000
+
+
+
+Licence: GPL (see gpl.txt in the miranda directory)

@@ -1,0 +1,162 @@
+Event Notify plugin
+*******************
+This plugin notifies you about message, URL, file, authorization request and "You were added" events.
+
+You can customize the appearance of the popup
+(M->Options->Events->Popup appearance)
+and the triggering options
+(M->Options->Events->Notifying)
+
+Left click on popup:	open the specific window
+
+Right click on popup:	close
+
+
+A value of 0 seconds disables the timer removing the popups, so you have to click them.
+
+The preview of the event is shown as tooltip.
+
+I'd like to thank hrk who supported me while coding this plugin
+and for the popup-styles of his NewStatusNotify plugin (as you
+might have seen). Thanks a lot!
+
+micron-x
+
+Questions and comments to:
+micron@nexgo.de
+
+
+
+Langpack strings
+****************
+[Flat]
+
+[Beveled]
+
+[Upper left corner]
+
+[Upper right corner]
+
+[Lower left corner]
+
+[Lower right corner]
+
+[Centered]
+
+[Vertical]
+
+[Horizontal]
+
+[Solid]
+
+[Transparent]
+
+[Popup appearance]
+
+[Notifying]
+
+[Here will be the preview of the message/URL/file/authorization request/\"You were added\" event.]
+
+[New message]
+
+[New URL]
+
+[New file]
+
+[Auth request]
+
+[You were added]
+
+[This is a preview]
+
+[Text]
+
+[Background]
+
+[Popup]
+
+[Style:]
+
+[Position:]
+
+[Spreading:]
+
+[Color:]
+
+[Font:]
+
+[Transparency (Windows 2000 & XP only)]
+
+[Synchronize with Miranda]
+
+[seconds visible (0 to disable)]
+
+[Preview]
+
+
+[Notify]
+
+[Messages]
+
+[URLs]
+
+[Files]
+
+[Authorization requests]
+
+[\"You were added\" events]
+
+[Even when message window is opened]
+
+[Dismiss events when]
+
+
+
+
+Version history
+***************
+0.1.5.5:	- new base address
+
+0.1.5.4:	- plugin not loading finally fixed
+
+0.1.5.3:	- not being recognized bug should be fixed now
+
+0.1.5.2:	- attempted fix (not being recognized by miranda)
+
+0.1.5.1:	- bugfix (crashing on multiple messages with split mode msg dialog)
+
+0.1.5.0:	- Left click opens all windows, not only message
+		- support for auth requests and "You were added" events
+		- some bug fixes
+
+0.1.4.0:	- Langpack changes
+		- cleaned up code
+
+0.1.3.0:	- added new style: minimal (icon, nickname and preview tooltip)
+
+0.1.2.0:	- icons now always correct size
+
+0.1.1.0:	- removed message preview on left click (no more crashing on Win98)
+		- re-added message preview as tooltip
+		- a timeout value of 0 disables the auto-close of notify-popup
+		- left-click now opens the message window (only available with built-in
+		  message dialogs and message events)
+
+0.1.0.0:	- Initial release
+
+
+
+Rebase information
+******************
+enotify.dll		0x67700000
+
+dbviewer.dll		0x67600000
+hotkey.dll		0x67500000
+pluginsweeper.dll	0x67400000
+seenplugin.dll		0x67300000
+tipinfo.dll		0x67200000
+visibility.dll		0x67100000
+
+
+
+Licence: GPL (see gpl.txt in the miranda directory)

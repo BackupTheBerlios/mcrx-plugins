@@ -1,0 +1,126 @@
+Plugin sweeper plugin
+*********************
+This plugin removes all database settings of a plugin.
+
+micron-x
+
+Questions and comments to:
+micron@nexgo.de
+
+
+
+Info for plugin developers
+**************************
+You just have to include following line into your plugins:
+
+
+	DBWriteContactSettingString(NULL,"Uninstall",PLUGIN_NAME,MODULE_NAME);
+
+
+where PLUGIN_NAME is the name of you plugin
+and MODULE_NAME is the szModule you use for your DB settings
+
+Or you can check if ServiceExist("PluginSweeper/Add")
+and call it with wparam=(WPARAM)(const char *)PLUGIN_NAME
+and lparam=(LPARAM)(const char *)MODULE_NAME
+
+	CallService("PluginSweeper/Add",(WPARAM)pszPlugin,(LPARAM)pszModule);
+
+(strings can be free()ed afterwards)
+
+Please send me a mail when you made it so that I can
+update the list below.
+TIA
+
+
+
+Langpack strings
+****************
+[Plugin sweeper]
+
+[No uninstallable plugins found]
+
+[Are you sure you want to remove all DB settings of this plugin?]
+
+[Main contact]
+
+[Select plugin:]
+
+[Plugin settings:]
+
+[Close]
+
+[Uninstaller]
+
+[Remove settings from:]
+
+[selected contact]
+
+[all contacts]
+
+[Add manually]
+
+[Remove manually]
+
+[Add plugin manually]
+
+[Plugin name:]
+
+[Module string used by plugin:]
+
+[Add]
+
+[Remove plugin manually]
+
+[Remove]
+
+[Do you really want to remove this plugin from the list?]
+
+
+
+Supported plugins:
+******************
+
+- Last seen plugin		(v4.1.2.0+)
+- Hotkey plugin			(v3.0.6.0+)
+- Status floater		(v0.0.0.7+)
+- UINBackup			(v0.4.1.0+)
+- NoSound			(v0.4.2.0+)
+- NewStatusNotify		(v1.0.3.8+)
+
+List outdated...sorry :(
+
+
+
+Version history
+***************
+0.4.1.0:	- prevent not loading & new base address
+
+0.4.0.0:	- reduced filesize to ~13k
+
+0.3.0.0:	- delete settings from selected contacts only
+		- add & remove plugins manually to/from list
+		- moved from main menu to options->plugins->uninstaller
+
+0.2.0.0:	- bugfixes
+		- ui redesigend
+		- implemented miranda-service
+
+0.1.0.0:	- Initial release
+
+
+
+Rebase information
+******************
+pluginsweeper.dll	0x67400000
+
+enotify.dll		0x67700000
+dbviewer.dll		0x67600000
+hotkey.dll		0x67500000
+seenplugin.dll		0x67300000
+tipinfo.dll		0x67200000
+visibility.dll		0x67100000
+
+
+
+Licence: GPL (see gpl.txt in the miranda directory)
