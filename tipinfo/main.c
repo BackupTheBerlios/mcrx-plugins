@@ -18,7 +18,7 @@ HANDLE hProcess=(HANDLE)ID_STATUS_OFFLINE,hevent=NULL;
 PLUGININFO pluginInfo={
 		sizeof(PLUGININFO),
 		"Tip info",
-		PLUGIN_MAKE_VERSION(2,2,0,0),
+		PLUGIN_MAKE_VERSION(2,1,1,0),
 		"Show various user/group infos as tooltips",
 		"Heiko Schillinger",
 		"micron@nexgo.de",
@@ -70,7 +70,6 @@ int RemoveMessage(char *template_str)
 	return 0;
 }
 
-// hrk
 
 int ProtoAck(WPARAM wparam,LPARAM lparam)
 {
@@ -114,7 +113,7 @@ int ProtoAck(WPARAM wparam,LPARAM lparam)
 
 	return 0;
 }
-// hrk
+
 
 DWORD StatusModeToProtoFlag(int status)
 {
