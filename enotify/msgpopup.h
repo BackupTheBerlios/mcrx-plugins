@@ -1,12 +1,12 @@
 #include <windows.h>
 #include <commctrl.h>
 #include "resource.h"
-#include "..\..\miranda32\random\plugins\newpluginapi.h"
-#include "..\..\miranda32\database\m_database.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
-#include "..\..\miranda32\ui\clui\m_clui.h"
-#include "..\..\miranda32\random\langpack\m_langpack.h"
-#include "..\..\miranda32\random\skin\m_skin.h"
+#include "..\SDK\headers_c\newpluginapi.h"
+#include "..\SDK\headers_c\m_database.h"
+#include "..\SDK\headers_c\m_clist.h"
+#include "..\SDK\headers_c\m_clui.h"
+#include "..\SDK\headers_c\m_langpack.h"
+#include "..\SDK\headers_c\m_skin.h"
 
 
 

@@ -1,5 +1,5 @@
 #include "dbwiz.h"
-#include "..\..\miranda32\random\skin\m_skin.h"
+#include "..\SDK\headers_c\m_skin.h"
 
 
 

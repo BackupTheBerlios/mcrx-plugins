@@ -1,9 +1,9 @@
 #include <windows.h>
 #include <commctrl.h>
-#include "..\..\miranda32\random\plugins\newpluginapi.h"
-#include "..\..\miranda32\database\m_database.h"
+#include "..\SDK\headers_c\newpluginapi.h"
+#include "..\SDK\headers_c\m_database.h"
 #include "resource.h"
-#include "..\..\miranda32\random\langpack\m_langpack.h"
+#include "..\SDK\headers_c\m_langpack.h"
 
 #pragma optimize ("gsy",on) 
 

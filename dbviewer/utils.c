@@ -1,5 +1,5 @@
 #include "dbwiz.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
+#include "..\SDK\headers_c\m_clist.h"
 
 
 

@@ -1,6 +1,6 @@
 #include "msgpopup.h"
 #include <stdio.h>
-#include "..\..\miranda32\protocols\protocols\m_protosvc.h"
+#include "..\SDK\headers_c\m_protosvc.h"
 
 
 // windows.c

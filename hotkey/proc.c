@@ -1,13 +1,13 @@
 #include "hotkey.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
-#include "..\..\miranda32\sendrecv\file\m_file.h"
-#include "..\..\miranda32\sendrecv\url\m_url.h"
-#include "..\..\miranda32\sendrecv\message\m_message.h"
-#include "..\..\miranda32\ui\userinfo\m_userinfo.h"
-#include "..\..\miranda32\ui\history\m_history.h"
-#include "..\..\miranda32\random\skin\m_skin.h"
-#include "..\..\miranda32\random\langpack\m_langpack.h"
-#include "..\..\miranda32\random\utils\m_utils.h"
+#include "..\SDK\headers_c\m_clist.h"
+#include "..\SDK\headers_c\m_file.h"
+#include "..\SDK\headers_c\m_url.h"
+#include "..\SDK\headers_c\m_message.h"
+#include "..\SDK\headers_c\m_userinfo.h"
+#include "..\SDK\headers_c\m_history.h"
+#include "..\SDK\headers_c\m_skin.h"
+#include "..\SDK\headers_c\m_langpack.h"
+#include "..\SDK\headers_c\m_utils.h"
 #include <stdio.h>
 
 

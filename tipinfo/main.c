@@ -1,10 +1,10 @@
 #include "tooltip.h"
-#include "..\..\miranda32\core\m_system.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
-#include "..\..\miranda32\protocols\protocols\m_protocols.h"
-#include "..\..\miranda32\protocols\protocols\m_protosvc.h"
-#include "..\..\miranda32\random\utils\m_utils.h"
-#include "..\..\miranda32\random\contacts\m_contacts.h"
+#include "..\SDK\headers_c\m_system.h"
+#include "..\SDK\headers_c\m_clist.h"
+#include "..\SDK\headers_c\m_protocols.h"
+#include "..\SDK\headers_c\m_protosvc.h"
+#include "..\SDK\headers_c\m_utils.h"
+#include "..\SDK\headers_c\m_contacts.h"
 
 
 

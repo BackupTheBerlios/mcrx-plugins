@@ -1,6 +1,6 @@
 #include "msgpopup.h"
-#include "..\..\miranda32\ui\options\m_options.h"
-#include "..\..\miranda32\random\utils\m_utils.h"
+#include "..\SDK\headers_c\m_options.h"
+#include "..\SDK\headers_c\m_utils.h"
 
 
 // main.c

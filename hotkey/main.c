@@ -1,8 +1,8 @@
 #include "hotkey.h"
-#include "..\..\miranda32\core\m_system.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
-#include "..\..\miranda32\ui\options\m_options.h"
-#include "..\..\miranda32\random\langpack\m_langpack.h"
+#include "..\SDK\headers_c\m_system.h"
+#include "..\SDK\headers_c\m_clist.h"
+#include "..\SDK\headers_c\m_options.h"
+#include "..\SDK\headers_c\m_langpack.h"
 #include <string.h>
 
 

@@ -1,7 +1,7 @@
 #include "dbwiz.h"
-#include "..\..\miranda32\core\m_system.h"
-#include "..\..\miranda32\ui\contactlist\m_clist.h"
-#include "..\..\miranda32\random\skin\m_skin.h"
+#include "..\SDK\headers_c\m_system.h"
+#include "..\SDK\headers_c\m_clist.h"
+#include "..\SDK\headers_c\m_skin.h"
 
 
 
