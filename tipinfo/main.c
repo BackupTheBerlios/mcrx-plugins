@@ -18,7 +18,7 @@ HANDLE hProcess=(HANDLE)ID_STATUS_OFFLINE,hevent=NULL;
 PLUGININFO pluginInfo={
 		sizeof(PLUGININFO),
 		"Tip info",
-		PLUGIN_MAKE_VERSION(2,1,1,0),
+		PLUGIN_MAKE_VERSION(2,1,2,0),
 		"Show various user/group infos as tooltips",
 		"Heiko Schillinger",
 		"micron@nexgo.de",

@@ -72,6 +72,8 @@ Langpack strings
 Version history
 ***************
 
+2.1.2.0: - works again
+
 2.1.1.0: - fixed bug in tooltip template
 
 2.1.0.0:	- problems with non-existent settings fixed
