@@ -31,7 +31,7 @@ PLUGINLINK *pluginLink;
 PLUGININFO pluginInfo={
 		sizeof(PLUGININFO),
 		"MenuItemEx",
-		PLUGIN_MAKE_VERSION(1,2,0,0),
+		PLUGIN_MAKE_VERSION(1,2,1,0),
 		"Set user properties by contact menu",
 		"Heiko Schillinger",
 		"micron@nexgo.de",
@@ -168,6 +168,9 @@ BOOL CALLBACK CatchMenuMsg(HWND hwnd,UINT msg,WPARAM wparam,LPARAM lparam)
 			}
 
 			break;
+
+		case WM_CLOSE:
+			DestroyWindow(hwnd);
 	}
 
 	return 0;

@@ -34,6 +34,8 @@ Langpack strings
 Version history
 -------------------
 
+1.2.1.0:		- fixed Windows shutdown failure
+
 1.2.0.0:		- Option to send 'You were added' and auth requests
 
 1.1.0.0:		- Option to change group (limited to 31 groups)

@@ -50,10 +50,11 @@ END
 //
 
 IDD_AUTHREQ DIALOGEX 0, 0, 186, 71
-STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | DS_FIXEDSYS
+STYLE DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION
 EXSTYLE WS_EX_TOOLWINDOW
 CAPTION "Dialog"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     EDITTEXT        IDC_REASON,8,8,170,34,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_WANTRETURN | NOT WS_BORDER,WS_EX_STATICEDGE
@@ -101,7 +102,7 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 IDD_OPTIONS DIALOGEX 0, 0, 181, 117
 STYLE DS_FIXEDSYS | WS_CHILD | WS_VISIBLE
 EXSTYLE WS_EX_CONTROLPARENT
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Always visible",IDC_ALWAYSVIS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,14,160,10
@@ -175,8 +176,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,2,0,0
- PRODUCTVERSION 1,2,0,0
+ FILEVERSION 1,2,1,0
+ PRODUCTVERSION 1,2,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -194,14 +195,14 @@ BEGIN
             VALUE "Comments", "MenuItemEx plugin for Miranda IM\0"
             VALUE "CompanyName", " \0"
             VALUE "FileDescription", "MenuItemEx plugin for Miranda IM\0"
-            VALUE "FileVersion", "1.2\0"
+            VALUE "FileVersion", "1.2.1\0"
             VALUE "InternalName", "menuex\0"
             VALUE "LegalCopyright", "© 2001-03 by Heiko Schillinger\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "menuex.dll\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "menuex\0"
-            VALUE "ProductVersion", "1.2\0"
+            VALUE "ProductVersion", "1.2.1\0"
             VALUE "SpecialBuild", "\0"
         END
     END
