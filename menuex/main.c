@@ -24,6 +24,7 @@ HANDLE hmenuVis,hmenuOff,hmenuHide,hmenuIgnore,hmenuProto,hmenuGroup,hmenuAdded,
 HMENU hpopupIgnore,hpopupProto,hpopupGroup;
 HWND hdummy;
 char *szmainProto,*protodat[MAX_PROTOS],*groupdat[MAX_GROUPS];
+WNDPROC mainProc;
 
 
 int OptionsInit(WPARAM,LPARAM);
@@ -167,13 +168,10 @@ BOOL CALLBACK CatchMenuMsg(HWND hwnd,UINT msg,WPARAM wparam,LPARAM lparam)
 				}
 			}
 
-			break;
-
-		case WM_CLOSE:
-			DestroyWindow(hwnd);
+			return 0;
 	}
 
-	return 0;
+	return CallWindowProc(mainProc,hwnd,msg,wparam,lparam);
 }
 
 
@@ -493,7 +491,7 @@ static int PluginInit(WPARAM wparam,LPARAM lparam)
 	HookEvent(ME_OPT_INITIALISE,OptionsInit);
 
 	hdummy=CreateWindow("BUTTON","",0,0,0,0,0,NULL,NULL,hinstance,NULL);
-	SetWindowLong(hdummy,GWL_WNDPROC,(LPARAM)CatchMenuMsg);
+	mainProc=(WNDPROC)SetWindowLong(hdummy,GWL_WNDPROC,(LPARAM)CatchMenuMsg);
 	return 0;
 }
 
