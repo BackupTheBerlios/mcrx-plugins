@@ -1,0 +1,67 @@
+Database viewer plugin
+**********************
+Take a closer look at your Miranda IM Database. (The name should be self-explanatory :))
+It's possible but _NOT_ recommended to modify and/or delete settings.
+
+The author takes no warranty and is not responsible for any damage caused by the use of this plugin.
+
+The icons are made by JReZIN. Thanks a lot :)
+
+micron-x
+
+Questions and comments to:
+micron@nexgo.de
+
+
+
+Langpack strings
+****************
+see langpack.txt
+
+
+
+Version history
+***************
+1.5.1.0:	- prevent plugin not loading & new base address
+
+1.5.0.0:	- fixed crash for strings>255 chars
+
+1.4.0.0:	- contact handle is shown
+		- you can switch between decimal and hex
+		- small bugfixes
+
+1.3.0.0:	- settings tree sorted alphabetically
+		- keeps selected contact on setting delete or change
+		- non-scrolling edit field fixed
+		- jrezin made some really cool icons
+		- dialog opens centered on screen
+
+1.2.0.0:	- another bugfix
+
+1.1.0.0:	- partly rewritten, should work now without GPF's
+
+1.0.1.0:	- bugfixes
+
+1.0.0.0:	- Totally rewritten
+		- Translatable
+
+
+
+Rebase information
+******************
+dbviewer.dll		0x67600000
+
+enotify.dll		0x67700000
+hotkey.dll		0x67500000
+pluginsweeper.dll	0x67400000
+seenplugin.dll		0x67300000
+tipinfo.dll		0x67200000
+visibility.dll		0x67100000
+
+
+
+Licence: GPL (see gpl.txt in the miranda directory)
+
+
+
+!! The author takes no warranty on any damage caused by this plugin !!

@@ -1,0 +1,26 @@
+Main DBviewer window
+
+	WM_INITDIALOG:	lParam=DBSTRUCT *dat;
+	GWL_USERDATA:	DBSTRUCT *dat
+
+
+
+Contact list
+
+	GWL_USERDATA:	CONTACTSTRUCT *cdat;
+	ItemData:		HANDLE hContact;
+
+
+
+TreeView:
+
+	GWL_USERDATA:	MODULESTRUCT *mdat;
+	ModuleData:
+	SettingData:	(char *)szModule
+
+
+
+Change/delete settings window
+
+	WM_INITDIALOG:	lParam=HANDOVERSTRUCT *dat
+	GWL_USERDATA:	HANDOVERSTRUCT *dat

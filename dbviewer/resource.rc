@@ -1,0 +1,233 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include <windows.h>
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral (Default) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUD)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_32BIT               ICON    DISCARDABLE     "icos\\DBViewer-32x32x32b.ico"
+IDI_8BIT                ICON    DISCARDABLE     "icos\\DBViewer-32x32x256.ico"
+#endif    // Neutral (Default) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include <windows.h>\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 450, 151
+STYLE DS_SETFOREGROUND | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | 
+    WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Database viewer"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Tree1",IDC_MODULETREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_NOTOOLTIPS | TVS_TRACKSELECT | TVS_INFOTIP | 
+                    TVS_FULLROWSELECT | WS_TABSTOP,6,18,120,126,
+                    WS_EX_STATICEDGE
+    LISTBOX         IDC_CONTACTLIST,294,18,150,126,LBS_SORT | 
+                    LBS_USETABSTOPS | LBS_NOINTEGRALHEIGHT | NOT WS_BORDER | 
+                    WS_VSCROLL | WS_TABSTOP,WS_EX_STATICEDGE
+    CONTROL         "type:",IDC_LABELTYPE,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,134,6,152,8
+    EDITTEXT        IDC_TYPE,134,18,152,10,ES_READONLY | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    LTEXT           "value:",IDC_LABELVALUE,134,40,152,8
+    EDITTEXT        IDC_VALUE,134,52,152,26,ES_MULTILINE | ES_READONLY | NOT 
+                    WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "Change",IDC_CHANGE,136,88,60,12,WS_DISABLED
+    PUSHBUTTON      "Close",IDC_CLOSE,224,88,60,12,BS_CENTER | BS_VCENTER
+    CTEXT           "It is not recommended to change or delete any values if you don't know what they represent or are used for!\nThe author takes no warranty!",
+                    IDC_LABELWARNING,134,110,152,34
+    ICON            "",IDC_LOGO,200,84,20,20,SS_CENTERIMAGE | 
+                    SS_REALSIZEIMAGE,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_HANDLE,374,6,70,10,ES_READONLY | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    RTEXT           "handle:",IDC_LABELHANDLE,294,6,76,8,SS_CENTERIMAGE
+    CONTROL         "10",IDC_DECIMAL,"Button",BS_AUTORADIOBUTTON | BS_LEFT | 
+                    BS_VCENTER,46,6,24,10
+    CONTROL         "16",IDC_HEX,"Button",BS_AUTORADIOBUTTON,76,6,25,9
+    LTEXT           "base:",IDC_LABELTYPE,6,6,40,8,SS_CENTERIMAGE
+END
+
+IDD_CHANGE DIALOGEX 0, 0, 176, 140
+STYLE DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | DS_CENTER | WS_POPUP | 
+    WS_VISIBLE | WS_CAPTION
+EXSTYLE WS_EX_CONTROLPARENT
+CAPTION "Change/delete setting"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_NEW,70,106,100,10,ES_AUTOHSCROLL | ES_NUMBER | NOT 
+                    WS_BORDER,WS_EX_STATICEDGE
+    PUSHBUTTON      "Apply",IDC_APPLY,6,122,50,12,BS_NOTIFY
+    PUSHBUTTON      "Delete",IDC_DELETE,63,122,50,12,BS_NOTIFY
+    PUSHBUTTON      "Cancel",IDC_CANCEL,120,122,50,12,BS_NOTIFY
+    EDITTEXT        IDC_USER,70,6,100,10,ES_READONLY | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_HANDLE,70,20,100,10,ES_READONLY | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_MODULE,70,34,100,10,ES_READONLY | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_SETTING,70,48,100,10,ES_READONLY | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_TYPE,70,62,100,10,ES_READONLY | NOT WS_BORDER,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_CURRENT,70,76,100,26,ES_MULTILINE | ES_READONLY | 
+                    NOT WS_BORDER,WS_EX_STATICEDGE
+    LTEXT           "user:",IDC_STATIC,6,6,58,8
+    LTEXT           "handle:",IDC_STATIC,6,20,58,8
+    LTEXT           "module:",IDC_STATIC,6,34,58,8
+    LTEXT           "setting:",IDC_STATIC,6,48,58,8
+    LTEXT           "type:",IDC_STATIC,6,62,58,8
+    LTEXT           "current value:",IDC_STATIC,6,76,58,18
+    LTEXT           "new value:",IDC_STATIC,6,106,58,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 443
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+    END
+
+    IDD_CHANGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 169
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,5,1,0
+ PRODUCTVERSION 1,5,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "Database viewer for Miranda IM\0"
+            VALUE "CompanyName", "Heiko Schillinger\0"
+            VALUE "FileDescription", "Database viewer\0"
+            VALUE "FileVersion", "1.5.1\0"
+            VALUE "InternalName", "Database viewer\0"
+            VALUE "LegalCopyright", "© 2001-2002 Heiko Schillinger\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "dbviewer.dll\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Database viewer\0"
+            VALUE "ProductVersion", "1.5.1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
